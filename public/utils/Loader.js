@@ -1,11 +1,8 @@
 var Loader = (function () {
-	var context = {},	json = {players:[{name:'weasel', path:'assets/weasel.png'}]};
+	var context = {},	resources = {players:[{name:'weasel', url:'assets/weasel.png'}]};
   //$.getJSON('path', fn())
 	context.load = function (category, callback) {
-    json[category].forEach(function(resource){
-      PIXI.loader.add(resource.name, resource.path);
-    });
-		PIXI.loader.load(callback);
+      PIXI.loader.add(resources[category]).load(callback);
 	};
 	return context;
 }(Loader));
