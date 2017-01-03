@@ -53,6 +53,12 @@ class Ship extends Player{
 
   }
 
+  update(){
+    this.sprite.rotation += this.rotation;
+    this.sprite.x += this.vx;
+    this.sprite.y += this.vy;
+  }
+
   //Calcula trayectoria según radianes
   //http://www.losersjuegos.com.ar/referencia/articulos/seno_coseno
   //http://thepythongamebook.com/en:pygame:step017

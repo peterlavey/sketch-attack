@@ -13,9 +13,7 @@ function init(){
 
 function engine(){
   requestAnimationFrame(engine);
-  player.sprite.rotation += player.rotation;
-  player.sprite.x += player.vx;
-  player.sprite.y += player.vy;
+  player.update();
 
   stage.start();
 }
