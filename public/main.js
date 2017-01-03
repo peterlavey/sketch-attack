@@ -1,8 +1,9 @@
 //Carga todos los recursos de la categoría player y para disponibilizar sus respectivas clases
-Loader.load('players', init);
+var loader = new Loader();
+loader.loadResource('players', init);
 
 var stage = new Stage();
-var player = new Player();
+var player = new Ship();
 
 function init(){
   player.setSprite('black');

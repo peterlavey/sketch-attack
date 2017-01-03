@@ -1,8 +1,10 @@
-var Loader = (function () {
-	var context = {},	resources = {players:[{name:'black', url:'assets/black.png'}]};
-  //$.getJSON('path', fn())
-	context.load = function (category, callback) {
-      PIXI.loader.add(resources[category]).load(callback);
-	};
-	return context;
-}(Loader));
+class Loader {
+	constructor(){
+		this.resources = {players:[{name:'black', url:'assets/black.png'}]};
+	}
+
+  loadResource(category, callback) {
+    PIXI.loader.add(this.resources[category]).load(callback);
+    return this;
+  }
+}

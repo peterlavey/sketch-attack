@@ -1,34 +1,30 @@
-var Keyboard = function (keyCode) {
-  var key = {};
-  key.code = keyCode;
-  key.isDown = false;
-  key.isUp = true;
-  key.press = undefined;
-  key.release = undefined;
+class Keyboard{
+  constructor(keyCode){
+    this.code = keyCode;
+    this.isDown = false;
+    this.isUp = true;
+    this.press = undefined;
+    this.release = undefined;
 
-  key.downHandler = function(event) {
-    if (event.keyCode === key.code) {
-      if (key.isUp && key.press) key.press();
-      key.isDown = true;
-      key.isUp = false;
+    window.addEventListener("keydown", this.downHandler.bind(this), false);
+    window.addEventListener("keyup", this.upHandler.bind(this), false);
+  }
+
+  downHandler(event) {
+    if (event.keyCode === this.code) {
+      if (this.isUp && this.press) this.press();
+      this.isDown = true;
+      this.isUp = false;
     }
     event.preventDefault();
-  };
+  }
 
-  key.upHandler = function(event) {
-    if (event.keyCode === key.code) {
-      if (key.isDown && key.release) key.release();
-      key.isDown = false;
-      key.isUp = true;
+  upHandler(event) {
+    if (event.keyCode === this.code) {
+      if (this.isDown && this.release) this.release();
+      this.isDown = false;
+      this.isUp = true;
     }
     event.preventDefault();
-  };
-
-  window.addEventListener(
-    "keydown", key.downHandler.bind(key), false
-  );
-  window.addEventListener(
-    "keyup", key.upHandler.bind(key), false
-  );
-  return key;
+  }
 }
