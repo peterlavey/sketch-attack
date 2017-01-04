@@ -1,4 +1,7 @@
-class Tank extends Player{
+const Keyboard = require('./Keyboard');
+const Keyboard = require('./Player');
+
+module.exports = class Tank extends Player{
   constructor(){
     super();
     this.grad = Math.PI / 180;

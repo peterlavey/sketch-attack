@@ -8,3 +8,5 @@ class Loader {
     return this;
   }
 }
+
+module.exports = new Loader();

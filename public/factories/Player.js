@@ -1,8 +1,12 @@
-class Player {
+module.exports = class Player {
 	constructor(){
     this.vx=0;
     this.vy=0;
     this.rotation=0;
+
+		this.maxSpeed=10;
+		this.acceleration=.2;
+		this.speed=0;
 	}
 
   setSprite(name){

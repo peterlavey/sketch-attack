@@ -1,4 +1,4 @@
-class Keyboard{
+module.exports = class Keyboard{
   constructor(keyCode){
     this.code = keyCode;
     this.isDown = false;

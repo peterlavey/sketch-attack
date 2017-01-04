@@ -1,4 +1,7 @@
-class Ship extends Player{
+const Keyboard = require('./Keyboard');
+const Player = require('./Player');
+
+module.exports = class Ship extends Player{
   constructor(){
     super();
     this.grad = Math.PI / 180;
@@ -16,13 +19,15 @@ class Ship extends Player{
     }.bind(this)
 
     _up.press=function(){
-      this.vx= this.getTrajectoryX();
-      this.vy=- this.getTrajectoryY();
+      this.accelerate();
+      this.vx= this.getTrajectoryX() * this.speed;
+      this.vy=- this.getTrajectoryY() * this.speed;
     }.bind(this)
 
     _down.press=function(){
-      this.vx=this.getTrajectoryX() * -1;
-      this.vy=- this.getTrajectoryY() * -1;
+      this.accelerate();
+      this.vx=(this.getTrajectoryX() * -1) * this.speed;
+      this.vy=- (this.getTrajectoryY() * -1) * this.speed;
     }.bind(this)
 
     _left.release=function(){
@@ -39,18 +44,37 @@ class Ship extends Player{
 
     _up.release=function(){
       if(!_down.isDown){
-        this.vx=0;
-        this.vy=0;
+        this.disaccelerate();
+        this.vx*=this.speed;
+        this.vy*=this.speed;
       }
     }.bind(this)
 
     _down.release=function(){
       if(!_up.isDown){
-        this.vx=0;
-        this.vy=0;
+        this.disaccelerate();
+        this.vx*=this.speed;
+        this.vy*=this.speed;
       }
     }.bind(this)
 
+  }
+
+  accelerate(){
+    if(this.speed < this.maxSpeed){
+      console.log(this.speed);
+      this.speed += this.acceleration;
+    }else{
+      this.speed = this.maxSpeed;
+    }
+  }
+
+  disaccelerate(){
+    if(this.speed){
+      this.speed -= this.acceleration;
+    }else if(this.speed < 0){
+      this.speed = 0;
+    }
   }
 
   update(){

@@ -1,4 +1,4 @@
-class Stage {
+module.exports = class Stage {
 	constructor(){
     this.renderer = PIXI.autoDetectRenderer(256, 256);
     document.body.appendChild(this.renderer.view);
