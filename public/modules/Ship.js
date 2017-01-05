@@ -1,14 +1,17 @@
 const Keyboard = require('./Keyboard');
 const Player = require('./Player');
+const EventEmitter = require('events').EventEmitter;
 
 module.exports = class Ship extends Player{
-  constructor(){
-    super();
+  constructor(game, type){
+    super(game, type);
     this.grad = Math.PI / 180;
     const _left = new Keyboard(37);
     const _right = new Keyboard(39);
     const _up = new Keyboard(38);
     const _down = new Keyboard(40);
+
+    this.create();
 
     _left.press=function(){
       this.rotation=-.2;
@@ -57,7 +60,6 @@ module.exports = class Ship extends Player{
         this.vy*=this.speed;
       }
     }.bind(this)
-
   }
 
   accelerate(){
@@ -78,9 +80,11 @@ module.exports = class Ship extends Player{
   }
 
   update(){
-    this.sprite.rotation += this.rotation;
-    this.sprite.x += this.vx;
-    this.sprite.y += this.vy;
+    this._sprite.rotation += this.rotation;
+    this._sprite.x += this.vx;
+    this._sprite.y += this.vy;
+
+    console.log("ENGINE!!");
   }
 
   //Calcula trayectoria según radianes
@@ -91,10 +95,10 @@ module.exports = class Ship extends Player{
   }
 
   getTrajectoryX(){
-    return Math.sin(this.radianToDegree(this.sprite.rotation) * this.grad);
+    return Math.sin(this.radianToDegree(this._sprite.rotation) * this.grad);
   }
 
   getTrajectoryY(){
-    return Math.cos(this.radianToDegree(this.sprite.rotation) * this.grad);
+    return Math.cos(this.radianToDegree(this._sprite.rotation) * this.grad);
   }
 }

@@ -3,7 +3,7 @@ class Loader {
 		this.resources = {players:[{name:'black', url:'assets/black.png'}]};
 	}
 
-  loadResource(category, callback) {
+  loadResources(category, callback) {
     PIXI.loader.add(this.resources[category]).load(callback);
     return this;
   }

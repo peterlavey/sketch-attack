@@ -12,6 +12,5 @@ module.exports = class Stage {
 
   start() {
     this.renderer.render(this.stage);
-    return this;
   }
 }
