@@ -1,0 +1,26 @@
+{
+  "name": "sketchattack",
+  "version": "1.0.0",
+  "description": "Juego de naves",
+  "main": "index.js",
+  "scripts": {
+    "start": "browserify public/main.js -d | exorcist public/bundle.map.js > public/bundle.js  && node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://PedroCisternas@bitbucket.org/PedroCisternas/sketch-attack.git"
+  },
+  "keywords": [
+    "pixijs",
+    "javascript",
+    "game",
+    "shooter"
+  ],
+  "author": "Pedro Cisternas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "open": "0.0.5"
+  }
+}
