@@ -13,53 +13,42 @@ module.exports = class Ship extends Player{
 
     this.create();
 
-    _left.press=function(){
-      this.rotation=-.2;
-    }.bind(this)
-
-    _right.press=function(){
-      this.rotation=.2;
-    }.bind(this)
-
-    _up.press=function(){
+    _left.press=()=> this.rotation=-.2;
+    _right.press=()=> this.rotation=.2;
+    _up.press=()=> {
       this.accelerate();
       this.vx= this.getTrajectoryX() * this.speed;
       this.vy=- this.getTrajectoryY() * this.speed;
-    }.bind(this)
-
-    _down.press=function(){
+    }
+    _down.press=()=>{
       this.accelerate();
       this.vx=(this.getTrajectoryX() * -1) * this.speed;
       this.vy=- (this.getTrajectoryY() * -1) * this.speed;
-    }.bind(this)
-
-    _left.release=function(){
+    }
+    _left.release=()=>{
       if(!_right.isDown){
         this.rotation=0;
       }
-    }.bind(this)
-
-    _right.release=function(){
+    }
+    _right.release=()=>{
       if(!_left.isDown){
         this.rotation=0;
       }
-    }.bind(this)
-
-    _up.release=function(){
+    }
+    _up.release=()=>{
       if(!_down.isDown){
         this.disaccelerate();
         this.vx*=this.speed;
         this.vy*=this.speed;
       }
-    }.bind(this)
-
-    _down.release=function(){
+    }
+    _down.release=()=>{
       if(!_up.isDown){
         this.disaccelerate();
         this.vx*=this.speed;
         this.vy*=this.speed;
       }
-    }.bind(this)
+    }
   }
 
   accelerate(){
